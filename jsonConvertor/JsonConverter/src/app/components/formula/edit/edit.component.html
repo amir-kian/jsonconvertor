@@ -1,0 +1,168 @@
+<p>edit works!</p>
+<style>
+
+</style>
+<main class="container-fluid" >
+  <div class="row">
+    <div class="col-md-8">
+        <div class="card my-2">
+    <div class="card-header">
+     فرم ویرایش </div>
+    <div class="card-body ">
+      <form #contactForm="ngForm" class="row" (ngSubmit)="Update(contactForm)">
+
+
+        
+        <div class="col-md-6">
+          <div class="row mb-3">
+            <label for="voucherTypeId" class="col-sm-3 col-form-label">voucherTypeId</label>
+            <div class="col-sm-9">
+              <select id="voucherTypeId"  name="voucherTypeId"  ((change))=onFormChange($event) [(ngModel)]="formula.voucherTypeId"  class="form-select form-control select2 " aria-label="Default select example" >
+                <option selected>Open this select menu</option>
+                <option  *ngFor="let item of vocherTypeIdSelectData" [value]="item.id">code: {{item.code}} title:
+                  {{item.title}} </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="orderIndex" class="col-sm-3 col-form-label">orderIndex</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="orderIndex" name="orderIndex" [(ngModel)]="formula.orderIndex" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="SourcevoucherTypeId" class="col-sm-3 col-form-label">SourceVoucherTypeId</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="SourceVoucherTypeId" name="SourceVoucherTypeId" [(ngModel)]="formula.sourceVoucherTypeId" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="DebitCreditStatus" class="col-sm-3 col-form-label">DebitCreditStatus</label>
+            <div class="col-sm-9">
+              <input type="number" max="255" class="form-control" id="DebitCreditStatus" name="DebitCreditStatus" [(ngModel)]="formula.debitCreditStatus" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="AccountHeadId" class="col-sm-3 col-form-label">AccountHeadId</label>
+            <div class="col-sm-9">
+              <select id="AccountHeadId" name="AccountHeadId" class="form-select form-control select2 " aria-label="Default select example" [(ngModel)]="formula.accountHeadId" (ngModelChange)=onFormChange($event)>
+                <option selected>Open this select menu</option>
+                <option *ngFor="let item of accountHeadSelectData" [value]="item.id">code: {{item.code}} title:
+                  {{item.title}} </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="RowDescription" class="col-sm-3 col-form-label">RowDescription</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="RowDescription" name="RowDescription" [(ngModel)]="formula.rowDescription" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+           <!-- <div class="row mb-3">
+            <label for="RowDescription" class="col-sm-3 col-form-label">RowDescription</label>
+            <div class="col-sm-9">
+              <select id="RowDescription" name="RowDescription" class="form-select form-control select2 " aria-label="Default select example" [(ngModel)]="RowDescription" (ngModelChange)=onFormChange($event)>
+                <option selected>Open this select menu</option>
+                <option *ngFor="let item of rowDescriptionSelectData" [value]="item"> {{item}}
+                  {{item.title}} </option>
+              </select>
+            </div>
+          </div>  -->
+
+
+
+          <div class="row mb-3">
+            <label for="Conditions" class="col-sm-3 col-form-label">Conditions</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="Conditions" name="Conditions" [(ngModel)]="formula.conditions" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="GroupBy" class="col-sm-3 col-form-label">GroupBy</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="GroupBy" name="GroupBy" [(ngModel)]="formula.groupBy" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="OwnerRoleId" class="col-sm-3 col-form-label">OwnerRoleId</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="OwnerRoleId" name="OwnerRoleId" [(ngModel)]="formula.ownerRoleId" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="CreatedById" class="col-sm-3 col-form-label">CreatedById</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="CreatedById" name="CreatedById" [(ngModel)]="formula.createdById" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="CreatedAt" class="col-sm-3 col-form-label">CreatedAt</label>
+            <div class="col-sm-9">
+              <input type="datetime" class="form-control" id="CreatedAt" name="CreatedAt" [(ngModel)]="formula.createdAt" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="ModifiedById" class="col-sm-3 col-form-label">ModifiedById</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="ModifiedById" name="ModifiedById" [(ngModel)]="formula.modifiedById" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="ModifiedAt" class="col-sm-3 col-form-label">ModifiedAt</label>
+            <div class="col-sm-9">
+              <input  type="datetime" class="form-control" id="ModifiedAt" name="ModifiedAt" [(ngModel)]="formula.modifiedAt" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="IsDeleted" class="col-sm-3 col-form-label">IsDeleted</label>
+            <div class="col-sm-9">
+              <input type="checkbox" class="form-check-input" id="IsDeleted" name="IsDeleted" [(ngModel)]="formula.isDeleted" (ngModelChange)=onFormChange($event)>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="col-md-6">
+          <div class="row mb-3">
+            <label for="Formula" class="col-sm-3 col-form-label">Formula</label>
+            <div class="col-sm-9">
+                <textarea class="form-control"  id="Formula" name="Formula" cols="10" rows="30" [(ngModel)]="formula.formula" (ngModelChange)="onFormChange($event)"></textarea>
+            </div>
+          </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary ">ویرایش</button>
+
+
+
+
+
+      </form>
+
+    </div>
+
+
+  </div>
+    </div>
+
+  </div>
+
+
+
+</main>
+
+

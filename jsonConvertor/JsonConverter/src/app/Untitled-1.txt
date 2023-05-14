@@ -1,0 +1,7 @@
+PM> Scaffold-DbContext "Server=192.168.14.13;Database=EefaDev;Trusted_Connection=True;User Id=ssrs;Password=123456" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+"DefaultString": "Data Source=192.168.14.13;Initial Catalog=EefaDev;User Id=ssrs;Password=123456"
+
+PM> Scaffold-DbContext "Server=192.168.14.13;Database=EefaDev;Trusted_Connection=False;User ID=ssrs;Password=123456" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+    Scaffold-DbContext 'Server=192.168.14.13;Database=EefaDev;Persist Security Info=False;User ID=username;Password=password;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;' Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+

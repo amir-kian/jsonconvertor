@@ -1,0 +1,244 @@
+<style>
+
+</style>
+<main class="container">
+
+  <div class="card my-2">
+    <div class="card-header">
+      فرم نگاشت Voucher </div>
+    <div class="card-body ">
+      <form #contactForm="ngForm" class="row">
+        <div class="col-md-6">
+          <div class="row mb-3">
+            <label for="Id" class="col-sm-3 col-form-label">Id</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="Id">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="VoucherTypeId" class="col-sm-3 col-form-label">VoucherTypeId</label>
+            <div class="col-sm-9">
+              <select id="VoucherTypeId" class="form-select form-control select2 " aria-label="Default select example" >
+                <option selected>Open this select menu</option>
+                <option *ngFor="let item of vocherTypeIdSelectData" [value]="item.id">code: {{item.code}} title: {{item.title}} </option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="OrderIndex" class="col-sm-3 col-form-label">OrderIndex</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="OrderIndex">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="SourceVoucherTypeId" class="col-sm-3 col-form-label">SourceVoucherTypeId</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="SourceVoucherTypeId">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="DebitCreditStatus" class="col-sm-3 col-form-label">DebitCreditStatus</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="DebitCreditStatus">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="AccountHeadId" class="col-sm-3 col-form-label">AccountHeadId</label>
+            <div class="col-sm-9">
+              <select id="AccountHeadId" class="form-select form-control select2 " aria-label="Default select example" >
+                <option selected>Open this select menu</option>
+                <option *ngFor="let item of accountHeadSelectData" [value]="item.id">code: {{item.code}} title: {{item.title}} </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="RowDescription" class="col-sm-3 col-form-label">RowDescription</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="RowDescription">
+            </div>
+          </div>
+
+
+
+          <div class="row mb-3">
+            <label for="Conditions" class="col-sm-3 col-form-label">Conditions</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="Conditions">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="GroupBy" class="col-sm-3 col-form-label">GroupBy</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="GroupBy">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="OwnerRoleId" class="col-sm-3 col-form-label">OwnerRoleId</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="OwnerRoleId">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="CreatedById" class="col-sm-3 col-form-label">CreatedById</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="CreatedById">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="CreatedAt" class="col-sm-3 col-form-label">CreatedAt</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="CreatedAt">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="ModifiedById" class="col-sm-3 col-form-label">ModifiedById</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="ModifiedById">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="ModifiedAt" class="col-sm-3 col-form-label">ModifiedAt</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="ModifiedAt">
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="IsDeleted" class="col-sm-3 col-form-label">IsDeleted</label>
+            <div class="col-sm-9">
+              <input type="checkbox" class="form-check-input" id="IsDeleted">
+            </div>
+          </div>
+        </div><div class="col-md-6">
+          <div class=" mb-3">
+           
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="inputPassword6" class="col-form-label">Add Formula :</label>
+              </div>
+              <div class="col-auto">
+                <input type="text" class="form-control" placeholder="نام فرمول را وارد کنید" name="FormullaName"  [(ngModel)]="FormullaName">  
+              </div>
+              <div class="col-auto">
+                <span id="passwordHelpInline" class="form-text text-success">
+                  <i (click)="createFormulaItem()" class="fa fa-plus-circle" aria-hidden="true"></i>
+                </span>
+              </div>
+              <div class="col-auto text-danger">
+                {{FormulaErroMessage}}
+              </div>
+            </div>
+
+ 
+            <div id="FormulaWrapper" class="col-sm-9"  *ngFor="let item of FormullaArr;let index = index;">
+                <!-- <input name=a{{index}} [(ngModel)]="toDos[index]" placeholder="item">    -->
+                <label for="comment">{{item.Name}}</label>
+                <div id=formula{{index}} class="input-group mb-3">
+                  <input name=a{{index}} [(ngModel)]="FormullaArr[index].Value"  placeholder="item" class="form-control" readonly>
+                  <div class="input-group-append">
+                    <span class="input-group-text">حذف فرمول <i class="fa fa-trash" aria-hidden="true" (click)="removeFormulaItem(index)"></i></span>
+                    <span class="input-group-text">افزودن نوشته <i (click)="OpenAddTextModal(index)"  class="fa fa-plus-circle" aria-hidden="true"></i> </span>
+                    <span class="input-group-text">افزودن جانگهدار <i (click)="OpenAddPlaceHolderModal(index)"  class="fa fa-plus-circle" aria-hidden="true"></i> </span>
+                  </div>
+                </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">نگاشت</button>
+
+
+      </form>
+    </div>
+
+
+  </div>
+
+</main>
+
+<!-- Modal Insert Text -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  افزودن نوشته به فرمول
+</button> -->
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addTextToFormulaForm="ngForm" class="row" (ngSubmit)="InsertTextToFormula(addTextToFormulaForm.value)">
+          <div class="mb-3 mt-3 text-end">
+            <label  for="comment">متن مورد نظر را جهت افزودن نوشته به فرمول اضافه کنید</label>
+            <textarea class="form-control" rows="5" id="comment" name="text" ngModel></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">افزودن</button>
+        </form>
+      </div>
+      <div class="modal-footer d-none">
+        <button id="closeTextToFormulaModal" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button  type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Modal Insert Text -->
+
+<!-- Modal Insert PlaceHolder -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  افزودن نوشته به فرمول
+</button> -->
+
+
+<div class="modal fade" id="Placeholder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button id="closePlaceHolderToFormulaModal" type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form #addPlaceHolderToFormulaForm="ngForm" class="row" (ngSubmit)="InsertPlaceHolderToFormula(addPlaceHolderToFormulaForm.value)">
+          <div class="mb-3 mt-3 text-end">
+            <label  for="comment">نام فیلد برای جانگهدار را وارد کنید</label>
+            <textarea class="form-control" rows="5" id="comment" name="text" ngModel></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">افزودن</button>
+        </form>
+      </div>
+      <div class="modal-footer d-none" >
+        <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Modal Insert PlaceHolder -->
+
+<router-outlet></router-outlet>

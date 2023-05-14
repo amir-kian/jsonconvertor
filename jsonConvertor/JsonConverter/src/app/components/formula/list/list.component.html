@@ -1,0 +1,57 @@
+
+<div class="container my-3">
+                      <button class="btn btn-outline-success my-3" (click)="AddItem()">Add <i class="fa fa-plus" aria-hidden="true"></i>
+                      </button>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>VoucherTypeId</th>
+                <th>OrderIndex</th>
+                <th>SourceVoucherTypeId</th>
+                <th>DebitCreditStatus</th>
+                <th>AccountHeadId</th>
+                <th>RowDescription</th>
+                <th>Formula</th>
+                <th>Conditions</th>
+                <th>GroupBy</th>
+                <th>OwnerRoleId</th>
+                <th>CreatedById</th>
+                <th>CreatedAt</th>
+                <th>ModifiedById</th>
+                <th>ModifiedAt</th>
+                <th>IsDeleted</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of formulas">
+                <td>{{ item.voucherTypeId }}</td>
+                <td>{{ item.orderIndex }}</td>
+                <td>{{ item.sourceVoucherTypeId }}</td>
+                <td>{{ item.debitCreditStatus }}</td>
+                <td>{{ item.accountHeadId }}</td>
+                <td>{{ item.rowDescription }}</td>
+                <td>{{ item.formula }}</td>
+                <td>{{ item.conditions }}</td>
+                <td>{{ item.groupBy }}</td>
+                <td>{{ item.ownerRoleId }}</td>
+                <td>{{ item.createdById }}</td>
+                <td>{{ item.createdAt }}</td>
+                <td>{{ item.modifiedById }}</td>
+                <td>{{ item.modifiedAt }}</td>
+                <td>{{ item.isDeleted }}</td>
+                <td>{{ item.actions }}</td>
+                <td>
+                  <button class="btn btn-outline-primary" (click)="EditItem(item.id)">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </button>
+                   <button class="btn btn-outline-danger" (click)="DeleteItem(item.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i>
+                   </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+
+</div>
