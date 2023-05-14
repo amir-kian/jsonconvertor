@@ -1,5 +1,5 @@
 
-<div class="container my-3">
+<div class="container-fluid my-3">
                       <button class="btn btn-outline-success my-3" (click)="AddItem()">Add <i class="fa fa-plus" aria-hidden="true"></i>
                       </button>
 
@@ -16,11 +16,11 @@
                 <th>Formula</th>
                 <th>Conditions</th>
                 <th>GroupBy</th>
-                <th>OwnerRoleId</th>
+                <!-- <th>OwnerRoleId</th>
                 <th>CreatedById</th>
                 <th>CreatedAt</th>
                 <th>ModifiedById</th>
-                <th>ModifiedAt</th>
+                <th>ModifiedAt</th> -->
                 <th>IsDeleted</th>
                 <th>Actions</th>
               </tr>
@@ -36,15 +36,14 @@
                 <td>{{ item.formula | slice:0:100 }}...</td>
                 <td>{{ item.conditions }}</td>
                 <td>{{ item.groupBy }}</td>
-                <td>{{ item.ownerRoleId }}</td>
+                <!-- <td>{{ item.ownerRoleId }}</td>
                 <td>{{ item.createdById }}</td>
                 <td>{{ item.createdAt }}</td>
                 <td>{{ item.modifiedById }}</td>
-                <td>{{ item.modifiedAt }}</td>
+                <td>{{ item.modifiedAt }}</td> -->
                 <td>{{ item.isDeleted }}</td>
-                <td>{{ item.actions }}</td>
-                <td>
-                  <button class="btn btn-outline-primary" (click)="EditItem(item.id)">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <td style="width: 150px;">
+                  <button class="btn btn-outline-primary my-1" (click)="EditItem(item.id)">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                   </button>
                    <button class="btn btn-outline-danger" (click)="DeleteItem(item.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i>
                    </button>

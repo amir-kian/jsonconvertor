@@ -7,7 +7,6 @@ function OpenTextModal() {
 }
 
 function CloseAllActiveModals() {
-    debugger;
     $('.modal').modal('hide');
 }
 function OpenPlaceholderModal(event) {

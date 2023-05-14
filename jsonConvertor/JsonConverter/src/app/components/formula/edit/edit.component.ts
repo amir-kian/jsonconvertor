@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,EventEmitter, Output} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Formula } from 'src/app/Models/Formula.model';
 import { FormulaTextArea } from 'src/app/Models/FormulaTextArea.model';
@@ -7,6 +7,7 @@ import { FormulaTextAreaValueProperty } from 'src/app/Models/FormulaTextAreaValu
 import { MyPlaceholder } from 'src/app/Models/MyPlaceholder.model';
 import { VouchersDetail } from 'src/app/Models/VouchersDetail.model';
 import { ApiService } from 'src/app/services/api.service';
+
 
 declare function OpenTextModal(): any;
 declare function OpenPlaceholderModal(): any;
@@ -62,7 +63,7 @@ export class EditComponent implements OnInit {
   Resultmessage: string="";
   alertClass: string="";
 
-
+  
   constructor(private _apiService: ApiService,private route: ActivatedRoute,private router: Router) {}
 
 
@@ -100,6 +101,8 @@ export class EditComponent implements OnInit {
         this.formula = result;
         console.log(' this.formula:', this.formula);
         this.ButifyJson();
+        this.onFormulaChange(this.formula.formula);
+
       },
       error => {
         console.error('Error loading formulas', error);
@@ -203,12 +206,12 @@ this.UpdateFormulaBaseOnTextArea=true;
   
     }
     ngAfterViewChecked() {
-      if(this.UpdateFormulaBaseOnTextArea){
+
         this.FormullaArr.forEach((item, index) => {
           changeShowFormula(index, item.Value);
           this.DedicateAndSetFormula(index);
         });
-      }
+    
     
   }
     detectRightMouseClick($event: any, index: any) {
@@ -266,7 +269,7 @@ this.UpdateFormulaBaseOnTextArea=true;
        console.log('ForumlaTextAreaList:',this.ForumlaTextAreaList);
   
        const jsonString = JSON.stringify(this.ForumlaTextAreaList);
-       this.Formula=jsonString;
+       this.formula.formula=jsonString;
        this.ButifyJson();
        this.UpdateFormulaBaseOnTextArea=false;
   
@@ -284,6 +287,7 @@ this.UpdateFormulaBaseOnTextArea=true;
   ///بدست آوردن و ست کردن جانگهدارهای یک فرمول
   DedicateAndSetFormula(formulaIndex: any) {
     debugger;
+    if (this.FormullaArr[formulaIndex].Placeholders.length==0){
     var famulaText = this.FormullaArr[formulaIndex].Value;
     const regex = /\[.+?\]/g;
     const matches = famulaText.match(regex);
@@ -296,6 +300,8 @@ this.UpdateFormulaBaseOnTextArea=true;
     }
     console.log('selected formula is:', this.FormullaArr[formulaIndex]);
     //this.onFormChange(null);
+    }
+
   }
   InsertTextToFormula(form: any) {
     debugger;

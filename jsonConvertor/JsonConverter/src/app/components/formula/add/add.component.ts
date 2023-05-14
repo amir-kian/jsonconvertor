@@ -307,6 +307,7 @@ this.FormullaArr[FormulaIndex].Placeholders[PlaceholderIndex-1].Name=form.text;
   ///بدست آوردن و ست کردن جانگهدارهای یک فرمول
   DedicateAndSetFormula(formulaIndex: any) {
     debugger;
+    if (this.FormullaArr[formulaIndex].Placeholders.length==0){
     var famulaText = this.FormullaArr[formulaIndex].Value;
     const regex = /\[.+?\]/g;
     const matches = famulaText.match(regex);
@@ -319,6 +320,7 @@ this.FormullaArr[FormulaIndex].Placeholders[PlaceholderIndex-1].Name=form.text;
     }
     console.log('selected formula is:', this.FormullaArr[formulaIndex]);
     //this.onFormChange(null);
+  }
   }
   map(contactForm: any) {
     debugger;
