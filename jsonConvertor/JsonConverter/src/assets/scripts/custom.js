@@ -20,7 +20,12 @@ function OpenPlaceholderModal(event) {
    //  console.log('event:',event);
    document.getElementById('FormulaIndex').value=formulaIndex;
    document.getElementById('placeHolderIndex').value=x;
-   
+debugger;
+   //set placeHolder value
+   const myObject = JSON.parse(document.getElementById('Formula').value);
+   const secondPropertyItem = myObject[formulaIndex]?.Value?.Properties[x-1] || "";
+   document.getElementById('PlaceHoldercomment').value=secondPropertyItem.Name;
+
     var myModal = new bootstrap.Modal(document.getElementById('Placeholder'));
     myModal.show();
 

@@ -76,6 +76,7 @@ export class AddComponent implements OnInit {
   selectedVoucherTypeId:string|undefined;
   Formula:any|undefined="";
   FormulaIndex:any|undefined;
+  placeHolderText:string="";
 
 
   /*End fields*/
