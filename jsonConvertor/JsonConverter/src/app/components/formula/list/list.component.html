@@ -33,7 +33,7 @@
                 <td>{{ item.debitCreditStatus }}</td>
                 <td>{{ item.accountHeadId }}</td>
                 <td>{{ item.rowDescription }}</td>
-                <td>{{ item.formula }}</td>
+                <td>{{ item.formula | slice:0:100 }}...</td>
                 <td>{{ item.conditions }}</td>
                 <td>{{ item.groupBy }}</td>
                 <td>{{ item.ownerRoleId }}</td>

@@ -162,7 +162,7 @@ namespace JsonConverter.Controllers.APIs
 
                 if (rowsAffected == 1)
                 {
-                    return Ok();
+                    return Ok(true);
                 }
                 else
                 {

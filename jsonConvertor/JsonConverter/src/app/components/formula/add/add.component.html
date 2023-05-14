@@ -2,6 +2,11 @@
 
 </style>
 <main class="container-fluid" >
+  <div [ngClass]="alertClass" role="alert">
+    {{ Resultmessage }}
+  </div>
+  <button class="btn btn-defualt" (click)="GoBackToList()">Back to List</button>
+
   <div class="row">
     <div class="col-md-8">
         <div class="card my-2">

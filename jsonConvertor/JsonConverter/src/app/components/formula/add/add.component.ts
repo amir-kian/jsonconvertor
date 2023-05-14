@@ -7,6 +7,7 @@ import { VouchersDetail } from '../../../Models/VouchersDetail.model';
 import { FormulaTextArea } from 'src/app/Models/FormulaTextArea.model';
 import { FormulaTextAreaValue } from 'src/app/Models/FormulaTextAreaValue';
 import { FormulaTextAreaValueProperty } from 'src/app/Models/FormulaTextAreaValueProperty';
+import { Router } from '@angular/router';
 
 
 declare function OpenTextModal(): any;
@@ -45,6 +46,10 @@ export class AddComponent implements OnInit {
   rowDescriptionSelectData: any;
   ForumlaTextAreaList:FormulaTextArea[]=[]
   UpdateFormulaBaseOnTextArea:boolean=false;
+  Resultmessage: string="";
+  alertClass: string="";
+
+
 
   //add contextmenu
   rightPanelStyle: any = {};
@@ -75,7 +80,7 @@ export class AddComponent implements OnInit {
 
   /*End fields*/
 
-  constructor(private _apiService: ApiService) { }
+  constructor(private _apiService: ApiService,private router: Router) { }
 
 
 
@@ -382,9 +387,20 @@ this.FormullaArr[FormulaIndex].Placeholders[PlaceholderIndex-1].Name=form.text;
       console.log('formData:',formData);
 
       this._apiService.SaveFormData(formData).subscribe(res => {
+        debugger;
         console.log('SaveFormData:', res);
+        if (res==true) {
+          this.alertClass = 'alert alert-success';
+          this.Resultmessage = 'Form data saved successfully';
+        } else {
+          this.alertClass = 'alert alert-danger';
+          this.Resultmessage = 'Error saving form data';
+        }
   
       });
+    }
+    GoBackToList() {
+      this.router.navigate(['/list']);
     }
     ButifyJson(){
       try {
