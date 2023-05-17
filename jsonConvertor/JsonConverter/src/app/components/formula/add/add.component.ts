@@ -322,6 +322,7 @@ this.FormullaArr[FormulaIndex].Placeholders[PlaceholderIndex-1].Name=form.text;
     console.log('selected formula is:', this.FormullaArr[formulaIndex]);
     //this.onFormChange(null);
   }
+  this.UpdateFormulaTextArea();
   }
   map(contactForm: any) {
     debugger;

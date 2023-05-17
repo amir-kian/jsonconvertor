@@ -133,6 +133,7 @@ formulaTextAreasList.forEach((item, index) => {
       });  
       console.log('this.FormullaArr:',this.FormullaArr);
 this.UpdateFormulaBaseOnTextArea=true;
+
   }
 
 
@@ -301,6 +302,7 @@ this.UpdateFormulaBaseOnTextArea=true;
     console.log('selected formula is:', this.FormullaArr[formulaIndex]);
     //this.onFormChange(null);
     }
+    this.UpdateFormulaTextArea();
 
   }
   InsertTextToFormula(form: any) {
