@@ -33,6 +33,9 @@ export class ApiService {
   DeleteFormula(FormulaId: number) {
     return this._http.delete<boolean>(`http://localhost:22675/api/Furmula/DeleteFormula?FormulaId=${FormulaId}`);
   }
+  LogicalDeleteFormula(FormulaId: number) {
+    return this._http.delete<boolean>(`http://localhost:22675/api/Furmula/LogicalDeleteFormula?FormulaId=${FormulaId}`);
+  }
 
 }//end class
 

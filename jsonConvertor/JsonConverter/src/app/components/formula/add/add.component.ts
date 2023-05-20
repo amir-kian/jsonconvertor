@@ -156,25 +156,31 @@ export class AddComponent implements OnInit {
   }
   onFormulaChange($event:any){
     debugger;
-    this.FormullaArr=[];
-    console.log('event:',$event);
-    const data = JSON.parse($event);
-const formulaTextAreasList = data.map(item => new FormulaTextArea(item.Property, new FormulaTextAreaValue(item.Value.Text, item.Value.Properties.map(property => new FormulaTextAreaValueProperty(property.Name)))));
-
-// log the result to the console
-console.log('formulaTextAreas:',formulaTextAreasList);
-formulaTextAreasList.forEach((item, index) => { 
-  var MyPlaceholderList: MyPlaceholder[] = [];
-  item.Value.Properties.forEach((it, index) => {
-    MyPlaceholderList.push(new MyPlaceholder(index, it.Name))
-  });
-  var formula = new Formula(index, item.Value.Text, item.Property,MyPlaceholderList);
-  this.FormullaArr.push(formula)
-      });  
-      console.log('this.FormullaArr:',this.FormullaArr);
-this.UpdateFormulaBaseOnTextArea=true;
+    try{
+      this.FormullaArr=[];
+      console.log('event:',$event);
+      const data = JSON.parse($event);
+  const formulaTextAreasList = data.map(item => new FormulaTextArea(item.Property, new FormulaTextAreaValue(item.Value.Text, item.Value.Properties.map(property => new FormulaTextAreaValueProperty(property.Name)))));
+  
+  // log the result to the console
+  console.log('formulaTextAreas:',formulaTextAreasList);
+  formulaTextAreasList.forEach((item, index) => { 
+    var MyPlaceholderList: MyPlaceholder[] = [];
+    item.Value.Properties.forEach((it, index) => {
+      MyPlaceholderList.push(new MyPlaceholder(index, it.Name))
+    });
+    var formula = new Formula(index, item.Value.Text, item.Property,MyPlaceholderList);
+    this.FormullaArr.push(formula);
+        });  
+        console.log('this.FormullaArr:',this.FormullaArr);
+  this.UpdateFormulaBaseOnTextArea=true;
+    }
+    catch (error) {
+      console.error('Invalid JSON:', error);
+    }
   }
   ngAfterViewChecked() {
+    debugger;
       if(this.UpdateFormulaBaseOnTextArea){
         this.FormullaArr.forEach((item, index) => {
           changeShowFormula(index, item.Value);
@@ -292,7 +298,7 @@ this.FormullaArr[FormulaIndex].Placeholders[PlaceholderIndex-1].Name=form.text;
      const jsonString = JSON.stringify(this.ForumlaTextAreaList);
      this.Formula=jsonString;
      this.ButifyJson();
-     this.UpdateFormulaBaseOnTextArea=false;
+  
 
   }
   AlterFormula($event: any) {
@@ -368,6 +374,8 @@ this.FormullaArr[FormulaIndex].Placeholders[PlaceholderIndex-1].Name=form.text;
 
   Save(contactForm: any) {
     debugger;
+    const now = new Date();
+
     console.log('contactForm.value:',contactForm.value);
     let myVoucher = new VouchersDetail();
       myVoucher.Id = contactForm.value.Id,
@@ -381,9 +389,9 @@ this.FormullaArr[FormulaIndex].Placeholders[PlaceholderIndex-1].Name=form.text;
       myVoucher.GroupBy = contactForm.value.GroupBy,
       myVoucher.OwnerRoleId = contactForm.value.OwnerRoleId,
       myVoucher.CreatedById = contactForm.value.CreatedById,
-      myVoucher.CreatedAt = "2022-02-20 13:08:52.1033333",
+      myVoucher.CreatedAt =now,
       myVoucher.ModifiedById = contactForm.value.ModifiedById,
-      myVoucher.ModifiedAt = "2022-02-20 13:08:52.1033333",
+      myVoucher.ModifiedAt =now,
       myVoucher.IsDeleted = false,
       myVoucher.Formula = contactForm.value.Formula
 

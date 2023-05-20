@@ -116,6 +116,7 @@ export class EditComponent implements OnInit {
   }
   onFormulaChange($event:any){
     debugger;
+    try {
     this.FormullaArr=[];
     console.log('event:',$event);
     const data = JSON.parse($event);
@@ -133,13 +134,17 @@ formulaTextAreasList.forEach((item, index) => {
       });  
       console.log('this.FormullaArr:',this.FormullaArr);
 this.UpdateFormulaBaseOnTextArea=true;
-
+    }
+    catch (error) {
+      console.error('Invalid JSON:', error);
+    }
   }
 
 
   Update(contactForm: any) {
     debugger;
     console.log('contactForm.value:',contactForm.value);
+
     if (this.formulaId !== undefined) {
       let myVoucher = new VouchersDetail();
       myVoucher.Id = this.formulaId.toString(),
@@ -153,9 +158,8 @@ this.UpdateFormulaBaseOnTextArea=true;
       myVoucher.GroupBy = contactForm.value.groupBy,
       myVoucher.OwnerRoleId = contactForm.value.ownerRoleId,
       myVoucher.CreatedById = contactForm.value.createdById,
-      myVoucher.CreatedAt = "2022-02-20 13:08:52.1033333",
       myVoucher.ModifiedById = contactForm.value.modifiedById,
-      myVoucher.ModifiedAt = "2022-02-20 13:08:52.1033333",
+      myVoucher.ModifiedAt = new Date(),
       myVoucher.IsDeleted = false,
       myVoucher.Formula = contactForm.value.Formula
       const formData =myVoucher;

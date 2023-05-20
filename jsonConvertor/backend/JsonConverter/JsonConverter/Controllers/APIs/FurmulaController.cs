@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System;
 using JsonConverter.Models;
 using System.Linq;
+using System.Globalization;
 
 namespace JsonConverter.Controllers.APIs
 {
@@ -45,7 +46,7 @@ namespace JsonConverter.Controllers.APIs
             try
             {
                 using var connection = new SqlConnection(_config.GetConnectionString("DefualtConnection"));
-                var Furmula = await connection.QueryAsync<Furmula>("select * from dbo.Furmula ");
+                var Furmula = await connection.QueryAsync<Furmula>("select * from dbo.Furmula Where IsDeleted=0 ");
                 return Ok(Furmula.Distinct());
 
             }
@@ -105,6 +106,10 @@ namespace JsonConverter.Controllers.APIs
         {
             try
             {
+                DateTime dateTime = DateTime.ParseExact(model.CreatedAt, "yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                string CreatedAtFormattedDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
+                model.CreatedAt = CreatedAtFormattedDate;
+
                 using var connection = new SqlConnection(_config.GetConnectionString("DefualtConnection"));
                 var sql = @"insert into dbo.Furmula(VoucherTypeId,OrderIndex,SourceVoucherTypeId,DebitCreditStatus,AccountHeadId,RowDescription,Formula,Conditions,GroupBy,OwnerRoleId,CreatedById,CreatedAt,ModifiedById,ModifiedAt,IsDeleted) values(@VoucherTypeId,@OrderIndex,@SourceVoucherTypeId,@DebitCreditStatus,@AccountHeadId,@RowDescription,@Formula,@Conditions,@GroupBy,@OwnerRoleId,@CreatedById,@CreatedAt,@ModifiedById,@ModifiedAt,@IsDeleted)";
                 var rowsAffected = await connection.ExecuteAsync(sql, model);
@@ -133,12 +138,43 @@ namespace JsonConverter.Controllers.APIs
 
             return rowsAffected == 1;
         }
+        [HttpDelete("LogicalDeleteFormula")]
+        public async Task<IActionResult> LogicalDeleteFormula([FromQuery] int FormulaId)
+        {
+            try
+            {
+                DateTime dateTime = DateTime.Now;
+                string dateString = dateTime.ToString("yyyy-MM-ddTHH:mm:ss.fffZ");
+                DateTime parsedDateTime = DateTime.ParseExact(dateString, "yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                using var connection = new SqlConnection(_config.GetConnectionString("DefualtConnection"));
+                var sql = @"UPDATE dbo.Furmula SET  ModifiedAt = @ModifiedAt, IsDeleted = @IsDeleted  WHERE Id = @Id";
+
+                var rowsAffected = await connection.ExecuteAsync(sql, new { Id = FormulaId, IsDeleted=true, ModifiedAt= parsedDateTime });
+
+                if (rowsAffected == 1)
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or return a custom error message
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while updating the formula.");
+            }
+        }
 
         [HttpPut("UpdateFormula")]
         public async Task<IActionResult> UpdateFormula([FromBody] Furmula model)
         {
             try
             {
+                DateTime dateTime = DateTime.ParseExact(model.ModifiedAt, "yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                string ModifiedAtFormattedDate = dateTime.ToString("yyyy-MM-dd HH:mm:ss.fffffff");
+                model.ModifiedAt = ModifiedAtFormattedDate;
                 using var connection = new SqlConnection(_config.GetConnectionString("DefualtConnection"));
                 var sql = @"UPDATE dbo.Furmula SET 
             VoucherTypeId = @VoucherTypeId, 
@@ -152,7 +188,6 @@ namespace JsonConverter.Controllers.APIs
             GroupBy = @GroupBy,
             OwnerRoleId = @OwnerRoleId,
             CreatedById = @CreatedById,
-            CreatedAt = @CreatedAt,
             ModifiedById = @ModifiedById,
             ModifiedAt = @ModifiedAt,
             IsDeleted = @IsDeleted 

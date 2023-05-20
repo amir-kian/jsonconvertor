@@ -11,9 +11,9 @@ export class VouchersDetail {
       GroupBy: string;
       OwnerRoleId: string;
       CreatedById: string;
-      CreatedAt: string;
+      CreatedAt: Date;
       ModifiedById: string;
-      ModifiedAt: string;
+      ModifiedAt: Date;
       IsDeleted: boolean;
     constructor(
       Id: string = "0",
@@ -28,9 +28,9 @@ export class VouchersDetail {
       GroupBy: string = "0",
       OwnerRoleId: string = "0",
       CreatedById: string = "0",
-      CreatedAt: string = "0",
+      CreatedAt: Date = new Date(),
       ModifiedById: string = "0",
-      ModifiedAt: string = "0",
+      ModifiedAt: Date = new Date(),
       IsDeleted: boolean= false
 
     ) {

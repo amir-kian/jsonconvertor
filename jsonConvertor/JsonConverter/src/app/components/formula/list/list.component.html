@@ -2,51 +2,52 @@
 <div class="container-fluid my-3">
                       <button class="btn btn-outline-success my-3" (click)="AddItem()">Add <i class="fa fa-plus" aria-hidden="true"></i>
                       </button>
+              <label class="ms-2" for="">   فیلتر : <input type="text" placeholder="VoucherTypeId" [(ngModel)]="filterValue" (change)="filterTable($event)" ></label>        
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-striped table-hover table-sm" id="filtertable">
             <thead>
               <tr>
-                <th>VoucherTypeId</th>
-                <th>OrderIndex</th>
-                <th>SourceVoucherTypeId</th>
-                <th>DebitCreditStatus</th>
-                <th>AccountHeadId</th>
-                <th>RowDescription</th>
-                <th>Formula</th>
-                <th>Conditions</th>
-                <th>GroupBy</th>
+                <th (click)="sort('voucherTypeId')">VoucherTypeId</th>
+                <th (click)="sort('orderIndex')">OrderIndex</th>
+               <!-- <th (click)="sort('sourceVoucherTypeId')">SourceVoucherTypeId</th>-->
+                <th (click)="sort('debitCreditStatus')">DebitCreditStatus</th>
+                <th (click)="sort('accountHeadId')">AccountHeadId</th>
+                <th (click)="sort('rowDescription')">RowDescription</th>
+                <th (click)="sort('formula')">Formula</th>
+                <th (click)="sort('conditions')">Conditions</th>
+                <th (click)="sort('groupBy')">GroupBy</th>
                 <!-- <th>OwnerRoleId</th>
                 <th>CreatedById</th>
                 <th>CreatedAt</th>
                 <th>ModifiedById</th>
-                <th>ModifiedAt</th> -->
-                <th>IsDeleted</th>
-                <th>Actions</th>
+                <th>ModifiedAt</th>
+                <th (click)="sort('isDeleted')">IsDeleted</th> -->
+                <th (click)="sort('actions')">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item of formulas">
                 <td>{{ item.voucherTypeId }}</td>
                 <td>{{ item.orderIndex }}</td>
-                <td>{{ item.sourceVoucherTypeId }}</td>
+               <!-- <td>{{ item.sourceVoucherTypeId }}</td>-->
                 <td>{{ item.debitCreditStatus }}</td>
                 <td>{{ item.accountHeadId }}</td>
                 <td>{{ item.rowDescription }}</td>
-                <td>{{ item.formula | slice:0:100 }}...</td>
-                <td>{{ item.conditions }}</td>
-                <td>{{ item.groupBy }}</td>
+                <td>{{ item.formula | slice:0:50 }}...</td>
+                <td>{{ item.conditions | slice:0:50 }}</td>
+                <td>{{ item.groupBy | slice:0:50 }}</td>
                 <!-- <td>{{ item.ownerRoleId }}</td>
                 <td>{{ item.createdById }}</td>
                 <td>{{ item.createdAt }}</td>
                 <td>{{ item.modifiedById }}</td>
-                <td>{{ item.modifiedAt }}</td> -->
-                <td>{{ item.isDeleted }}</td>
-                <td style="width: 150px;">
-                  <button class="btn btn-outline-primary my-1" (click)="EditItem(item.id)">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                  </button>
-                   <button class="btn btn-outline-danger" (click)="DeleteItem(item.id)">Delete <i class="fa fa-trash" aria-hidden="true"></i>
-                   </button>
+                <td>{{ item.modifiedAt }}</td> 
+                <td>{{ item.isDeleted }}</td>-->
+                <td style="width: 200px;">
+                  <a  class="" (click)="EditItem(item.id)"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <a  class="ms-2" (click)="LogicalDeleteFormula(item.id)"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+
+        
                 </td>
               </tr>
             </tbody>
@@ -54,3 +55,4 @@
     </div>
 
 </div>
+
